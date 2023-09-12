@@ -9,7 +9,7 @@ class SellerForm(forms.ModelForm):
         fields = '__all__'
 
     def clean_address(self):
-        # apply address model validation
+        # apply model validation for address
         address = self.cleaned_data["address"]
         # add custom validation
         if len(address) < 10:
@@ -17,7 +17,7 @@ class SellerForm(forms.ModelForm):
         return address
 
     def clean_certificate_code(self):
-        # apply address model validation
+        # apply model validation for certificate_code
         clean_certificate = self.cleaned_data["certificate_code"]
         # add custom validation
         if not clean_certificate.isupper():
