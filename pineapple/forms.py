@@ -9,13 +9,17 @@ class SellerForm(forms.ModelForm):
         fields = '__all__'
 
     def clean_address(self):
-        address = self.cleaned_data['address']
+        # apply address model validation
+        address = self.cleaned_data["address"]
+        # add custom validation
         if len(address) < 10:
             raise forms.ValidationError("این فیلد باید بیشتر از ۱۰ کاراکتر باشد.")
         return address
 
     def clean_certificate_code(self):
+        # apply address model validation
         clean_certificate = self.cleaned_data["certificate_code"]
+        # add custom validation
         if not clean_certificate.isupper():
             raise forms.ValidationError("حروف گواهینامه باید حروف بزرگ باشد.")
         return clean_certificate
