@@ -2,6 +2,11 @@
 {% load static %}
 
 {% block title %}لیست سفارشات{% endblock title %}
+{% block content %}
+{% for order in orders %}
+    {{ order.name }}
+    {{ order.pineapple.seller.name }}
+    {{ order.weight_kg }}
+    {% widthratio order.pineapple.price_toman 1 order.weight_kg %}
 
-<!-- Add your Content Here -->
-{% block content %}{% endblock content %}
+{% endfor %}{% endblock content %}
