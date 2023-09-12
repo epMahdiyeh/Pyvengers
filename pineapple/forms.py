@@ -1,10 +1,24 @@
 from django import forms
-from django.core.validators import MaxValueValidator
-from .models import Order, Pineapple
+import django.core.validators as validators
+from .models import Order, Pineapple, Seller
 
 
-class SellerForm:
-    pass
+class SellerForm(forms.ModelForm):
+    class Meta:
+        model = Seller
+        fields = '__all__'
+
+    def clean_address(self):
+        address = self.cleaned_data['address']
+        if len(address) < 10:
+            raise forms.ValidationError("این فیلد باید بیشتر از ۱۰ کاراکتر باشد.")
+        return address
+
+    def clean_certificate_code(self):
+        clean_certificate = self.cleaned_data["certificate_code"]
+        if not clean_certificate.isupper():
+            raise forms.ValidationError("حروف گواهینامه باید حروف بزرگ باشد.")
+        return clean_certificate
 
 
 class PineappleForm:
@@ -20,7 +34,7 @@ class OrderForm(forms.ModelForm):
 
     name = forms.CharField(max_length=50)
     weight_kg = forms.FloatField(validators=[
-        MaxValueValidator(100, '۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
+        validators.MaxValueValidator(100, '۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
     ])
 
 

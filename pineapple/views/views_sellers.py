@@ -8,9 +8,11 @@ def seller_list_view(request):
     sellers = Seller.objects.all()
     return render(request, 'sellers/seller_list.html', {'sellers': sellers})
 
+
 def seller_detail_view(request, certificate_code):
     seller = get_object_or_404(Seller, certificate_code=certificate_code)
     return render(request, 'sellers/seller_detail.html', {'seller': seller})
+
 
 def seller_create_view(request):
     if request.method == "POST":
