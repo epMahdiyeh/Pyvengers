@@ -31,16 +31,15 @@ class PineappleForm:
 
 
 class OrderForm(forms.ModelForm):
-    pineapple = forms.ModelChoiceField(queryset=Pineapple.objects.all())
-
     class Meta:
         model = Order
         fields = '__all__'
 
-    name = forms.CharField(max_length=50)
-    weight_kg = forms.FloatField(validators=[
-        validators.MaxValueValidator(100, '۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
-    ])
+    def clean_weight_kg(self):
+        weight_kg = self.cleaned_data["weight_kg"]
+        if weight_kg > 100:
+            raise forms.ValidationError('۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
+        return weight_kg
 
 
 class SubscriptionForm:
@@ -51,4 +50,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = '__all__'
-
