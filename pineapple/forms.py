@@ -1,4 +1,5 @@
 from django import forms
+
 import django.core.validators as validators
 from .models import Order, Pineapple, Seller
 
@@ -46,5 +47,8 @@ class SubscriptionForm:
     pass
 
 
-class CommentForm:
-    pass
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+

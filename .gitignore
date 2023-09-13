@@ -1,12 +1,12 @@
 *.log
 *.pot
 *.pyc
-__pycache__/
+__pycache__
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
 .idea
-venv/
-/Pyvengers.zip
-text
+venv
+Pyvengers.zip
+.vscode
