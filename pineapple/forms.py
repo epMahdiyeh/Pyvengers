@@ -1,7 +1,7 @@
 from django import forms
 
 import django.core.validators as validators
-from .models import Order, Pineapple, Seller
+from .models import Order, Pineapple, Seller, Comment
 
 
 class SellerForm(forms.ModelForm):
