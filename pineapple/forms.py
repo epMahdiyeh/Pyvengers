@@ -1,6 +1,6 @@
 from django import forms
 import django.core.validators as validators
-from .models import Order, Pineapple, Seller
+from .models import Order, Pineapple, Seller, Comment
 
 
 class SellerForm(forms.ModelForm):
@@ -29,22 +29,33 @@ class PineappleForm:
     pass
 
 
-class OrderForm(forms.ModelForm):
-    pineapple = forms.ModelChoiceField(queryset=Pineapple.objects.all())
+# class OrderForm(forms.ModelForm):
+#     class Meta:
+#         model = Order
+#         exclude = ['weight_kg']
+#     weight_kg = forms.FloatField(validators=[
+#         validators.MaxValueValidator(100, '۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
+#     ])
 
+
+class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = '__all__'
+        exclude = ['weight_kg']
 
-    name = forms.CharField(max_length=50)
-    weight_kg = forms.FloatField(validators=[
-        validators.MaxValueValidator(100, '۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
-    ])
+    def clean_weight_kg(self):
+        weight_kg = self.cleaned_data['weight_kg']
+        if weight_kg > 100:
+            raise forms.ValidationError('۱۰۰ کیلو آناناس می‌خوای چیکار؟ مشکل داری؟')
+        return weight_kg
 
 
 class SubscriptionForm:
     pass
 
 
-class CommentForm:
-    pass
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
