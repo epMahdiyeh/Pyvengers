@@ -7,6 +7,6 @@
     {{ order.name }}
     {{ order.pineapple.seller.name }}
     {{ order.weight_kg }}
-    {% widthratio order.pineapple.price_toman 1 order.weight_kg %}
+    {% widthratio order.weight_kg 1 order.pineapple.price_toman%}
 {% endfor %}
 {% endblock content %}
