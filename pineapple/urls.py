@@ -4,8 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-app_name = "pineapple"
 
+app_name = "pineapple"
 
 urlpatterns = [
     path('order-list/', views.order_list_view, name='order-list'),
@@ -13,7 +13,7 @@ urlpatterns = [
     path('order-create/', views.order_create_view, name='order-create'),
     path('order-update/<int:pk>', views.order_update_view, name='order-update'),
     path('comment-create/', views.comment_create_view, name='comment-create'),
-    path('seller-comment-list/<str:certificate_code>/', views.seller_comment_list_view, name='seller-comment-list'),
+    path('seller-comment-list/<int:pk>', views.seller_comment_list_view, name='seller-comment-list'),
 
 ]
 
