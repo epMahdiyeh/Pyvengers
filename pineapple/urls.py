@@ -11,8 +11,12 @@ urlpatterns = [
     path('order-detail/<int:pk>', views.order_detail_view, name='order-detail'),
     path('order-create/', views.order_create_view, name='order-create'),
     path('order-update/<int:pk>', views.order_update_view, name='order-update'),
+    path('comment-create/', views.comment_create_view, name='comment-create'),
+    path('seller-comment-list/<str:certificate_code>/', views.seller_comment_list_view, name='seller-comment-list'),
 
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+ 
