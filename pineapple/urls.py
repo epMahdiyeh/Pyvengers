@@ -21,12 +21,12 @@ urlpatterns = [
     path('comment-create/', views.comment_create_view, name='comment-create'),
     path('seller-comment-list/<int:pk>', views.seller_comment_list_view, name='seller-comment-list'),
 
-    #
-    # path('pineapples/', pineapple_list_view.as_view(), name='pineapple-list'),
-    # path('pineapples/<int:pk>/', pineapple_detail_view.as_view(), name='pineapple-detail'),
-    # path('pineapples/create/', pineapple_create_view.as_view(), name='pineapple-create'),
-    # path('pineapples/<int:pk>/update/', pineapple_update_view.as_view(), name='pineapple-update'),
-    # path('seller/<int:seller_id>/pineapples/', seller_pineapple_list_view.as_view(), name='seller-pineapple-list'),
+
+    path('pineapples/',views.pineapple_list_view, name='pineapple-list'),
+    path('pineapples/<int:pk>/',views.pineapple_detail_view, name='pineapple-detail'),
+    path('pineapples/create/',views.pineapple_create_view, name='pineapple-create'),
+    path('pineapples/<int:pk>/update/',views.pineapple_update_view, name='pineapple-update'),
+    path('seller/<int:seller_id>/pineapples/',views.seller_pineapple_list_view, name='seller-pineapple-list'),
 
 ]
 
