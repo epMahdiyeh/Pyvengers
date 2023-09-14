@@ -1,7 +1,9 @@
+import re
+
 from django import forms
 
 import django.core.validators as validators
-from .models import Order, Pineapple, Seller, Comment
+from .models import Subscription, Order, Pineapple, Seller, Comment
 
 
 class SellerForm(forms.ModelForm):
@@ -42,8 +44,17 @@ class OrderForm(forms.ModelForm):
         return weight_kg
 
 
-class SubscriptionForm:
-    pass
+class SubscriptionForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = '__all__'
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get("phone_number")
+        pattern = re.compile(r'^09\d{9}$')
+        if not pattern.match(phone_number):
+            raise forms.ValidationError('شماره تلفن اشتباه است. شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود.')
+        return phone_number
 
 
 class CommentForm(forms.ModelForm):
