@@ -2,7 +2,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-
+from .views import (pineapple_list_view,pineapple_detail_view,pineapple_create_view,pineapple_update_view,seller_pineapple_list_view)
 
 app_name = "pineapple"
 
@@ -18,6 +18,13 @@ urlpatterns = [
     path("seller-update/<str:certificate_code>", views.seller_update_view, name="seller-update"),
     path('comment-create/', views.comment_create_view, name='comment-create'),
     path('seller-comment-list/<int:pk>', views.seller_comment_list_view, name='seller-comment-list'),
+
+
+    path('pineapples/', pineapple_list_view.as_view(), name='pineapple-list'),
+    path('pineapples/<int:pk>/', pineapple_detail_view.as_view(), name='pineapple-detail'),
+    path('pineapples/create/', pineapple_create_view.as_view(), name='pineapple-create'),
+    path('pineapples/<int:pk>/update/', pineapple_update_view.as_view(), name='pineapple-update'),
+    path('seller/<int:seller_id>/pineapples/', seller_pineapple_list_view.as_view(), name='seller-pineapple-list'),
 
 ]
 
