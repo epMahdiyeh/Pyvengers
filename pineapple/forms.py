@@ -1,8 +1,5 @@
 import re
-
 from django import forms
-
-import django.core.validators as validators
 from .models import Subscription, Order, Pineapple, Seller, Comment
 
 
@@ -38,7 +35,7 @@ class OrderForm(forms.ModelForm):
         fields = '__all__'
 
     def clean_weight_kg(self):
-        weight_kg = self.cleaned_data["weight_kg"]
+        weight_kg = self.cleaned_data.get("weight_kg")
         if weight_kg > 100:
             raise forms.ValidationError('۱۰۰ کیلو آناناس میخوای چیکار؟ مشکل داری؟')
         return weight_kg

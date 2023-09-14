@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 class General(models.Model):
     class Meta:
         abstract = True
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -24,7 +25,7 @@ class Order(General):
     pineapple = models.ForeignKey(Pineapple, on_delete=models.CASCADE, related_name='pineapple_seler')
     name = models.CharField(max_length=50)
     weight_kg = models.FloatField()
-    
+
 
 class Comment(General):
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
