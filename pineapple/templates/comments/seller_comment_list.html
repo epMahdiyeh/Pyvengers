@@ -5,9 +5,11 @@
 
 {% block content %}
         {% for comment in comments %}
-        
+            
                 {{ comment.name }}
-                {{ seller.name }}
+                {{ comment.seller.name }}
                 {{ comment.text }}
+            
         
+        {% endfor %}
 {% endblock content %}
