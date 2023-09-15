@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from ..models import Comment, Seller
+from pineapple.models import Comment, Seller
 from pineapple.forms import CommentForm
 
 def seller_comment_list_view(request, certificate_code):
