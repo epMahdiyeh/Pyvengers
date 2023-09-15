@@ -58,6 +58,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = '__all__'
+        
 
     def clean_text(self):
         content = self.cleaned_data.get('text')
