@@ -58,3 +58,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = '__all__'
+
+    def clean_text(self):
+        content = self.cleaned_data.get('text')
+        if len(content) < 10:
+            raise forms.ValidationError("این فیلد باید بیشتر از ۱۰ کاراکتر باشد.")
+        return content
