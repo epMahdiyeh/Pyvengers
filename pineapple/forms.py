@@ -26,7 +26,17 @@ class SellerForm(forms.ModelForm):
 
 
 class PineappleForm:
-    pass
+    class Meta:
+        model = Pineapple
+        fields = '__all__'
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price < 1000:
+            raise forms.ValidationError("قیمت نباید کمتر از هزار تومان باشد.")
+        elif price > 1000000:
+            raise forms.ValidationError("قیمت نباید از یک میلیون تومان بیشتر باشد.")
+        return price
 
 
 class OrderForm(forms.ModelForm):
