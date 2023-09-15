@@ -20,7 +20,7 @@ urlpatterns = [
     path("seller-update/<str:certificate_code>", views.seller_update_view, name="seller-update"),
 
     path('comment-create/', views.comment_create_view, name='comment-create'),
-    path('seller-comment-list/<int:pk>', views.seller_comment_list_view, name='seller-comment-list'),
+    path('seller-comment-list/<str:certificate_code>/', views.seller_comment_list_view, name='seller-comment-list'),
 
     path('pineapples/', views.pineapple_list_view, name='pineapple-list'),
     path('pineapples/<int:pk>/', views.pineapple_detail_view, name='pineapple-detail'),
