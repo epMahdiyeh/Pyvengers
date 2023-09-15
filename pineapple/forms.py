@@ -65,3 +65,4 @@ class CommentForm(forms.ModelForm):
         if len(content) < 10:
             raise forms.ValidationError("این فیلد باید بیشتر از ۱۰ کاراکتر باشد.")
         return content
+    
