@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}آناناس فروشی آقای زحمتکش{% endblock title %}
+{% block content %}
+    {% for pineapple in pineapples %}
+        {{ pineapple.price_toman }}
+        {{ pineapple.seller.certificate_code}}
 
-
-{% block title %}<!-- Add your Title Here -->{% endblock title %}
-
-<!-- Add your Content Here -->
-{% block content %}{% endblock content %}
+    {% endfor %}
+{% endblock content %}
