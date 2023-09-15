@@ -10,6 +10,7 @@ class General(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+#تست
 class Seller(General):
     name = models.CharField(max_length=256)
     address = models.TextField()
